@@ -1,0 +1,23 @@
+language: generic
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t syacooms/react-test-app -f ./frontend/dockerfile.dev ./frontend
+
+script:
+  - dcker run -e CI=true syacooms/react-test-app npm run test
+
+after_success:
+  - docker build -t syacooms/docker-frontend ./frontend
+  - docker build -t syacooms/docker-backend ./backend
+  - docker build -t syacooms/docker-nginx ./nginx
+
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+
+  - docker push syacooms/docker-frontend
+  - docker push syacooms/docker-backend
+  - docker push syacooms/docker-nginx
