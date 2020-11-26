@@ -17,7 +17,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t syacooms/react-test-app -f ./frontend/dockerfile.dev ./frontend
+  - docker build -t syacooms/react-test-app -f ./frontend/Dockerfile.dev ./frontend
 
 script:
   - dcker run -e CI=true syacooms/react-test-app npm run test
