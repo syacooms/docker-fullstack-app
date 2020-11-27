@@ -1,8 +1,9 @@
 {
-    // version
-    "AWSEBDockerrunVsersion": 2,
+    
+    "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
         {
+            
             "name": "frontend",
             "image": "syacooms/docker-frontend",
             "hostname": "frontend",
@@ -14,6 +15,20 @@
             "image": "syacooms/docker-backend",
             "hostname": "backend",
             "essential": false,
+            "memory": 128
+        },
+        {
+            "name": "nginx",
+            "image": "syacooms/docker-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["frontend", "backend"],
             "memory": 128
         }
 

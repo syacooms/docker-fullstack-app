@@ -11,5 +11,5 @@ RUN npm run build
 FROM nginx
 EXPOSE 3000
 #컨테이너 안에 있는 nginx 설정 경로 작성해준 default.conf로 덧씌워준다.
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/default.conf /etc/nginx/conf.d
 COPY --from=builder /app/build /usr/share/nginx/html
