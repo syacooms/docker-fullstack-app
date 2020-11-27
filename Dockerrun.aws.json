@@ -1,0 +1,21 @@
+{
+    // version
+    "AWSEBDockerrunVsersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "syacooms/docker-frontend",
+            "hostname": "frontend",
+            "essential": false,
+            "memory": 128
+        },
+        {
+            "name": "backend",
+            "image": "syacooms/docker-backend",
+            "hostname": "backend",
+            "essential": false,
+            "memory": 128
+        }
+
+    ]
+}
