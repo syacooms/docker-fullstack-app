@@ -32,3 +32,16 @@ after_success:
   - docker push syacooms/docker-frontend
   - docker push syacooms/docker-backend
   - docker push syacooms/docker-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: "docker-fullstack-app"
+  env: "DockerFullstackApp-env"
+  bucket_name: "elasticbeanstalk-ap-northeast-2-285164948650"
+  bucket_path: "docker-fullstack-app"
+  on:
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
